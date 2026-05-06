@@ -30,15 +30,12 @@ def question_check(question, answer, units):
            user = float(input(question))
            answer = round(answer, 2)
            if user == answer:
-               print("Correct answer!")
-               quiz_history.append("correct")
-
-               return True
+               # print("Correct answer!")
+               return user, answer, True
            else:
-               print(f"Incorrect. Answer is {answer}{units}")
-               quiz_history.append("incorrect")
+               # print(f"Incorrect. Answer is {answer}{units}")
 
-               return False
+               return user, answer, False
        except ValueError:
            print("Please enter a number.")
 
@@ -47,7 +44,7 @@ def instruction():
 
 **** Instructions ****
 
-Answer area and perimeter math questions.
+Answer area and perimeter math questions according to the difficulty you set.
 
     ''')
 
@@ -115,13 +112,25 @@ for i in range(num_questions):
             answer = 2 * pi * random_num_a
             question = f"A circle has a radius of {random_num_a}{units}. What is its circumference? "
 
-    question_check(question, answer, units)
+    user, correct_ans, correct = question_check(question, answer, units)
     quiz_history.append({
-        "question": question
+        "question": question,
+        "correct": correct,
+        "answer": correct_ans,
+        "user": user
     })
 
 # Asks users if they want to see results
-if response_check("Do you want to see the results? ", ["yes", "no"]) == "yes":
+if response_check("\nDo you want to see the results? ", ["yes", "no"]) == "yes":
+    print("\nQuiz History:\n")
     for i, item in enumerate(quiz_history, start=0):
-        print(f"Question {i+1}")
-        print(question)
+        result = "You got the answer correct!" if item["correct"] else "Sorry, you got it incorrect."
+        print(f"Question {i+1}:")
+        print(item["question"])
+        if item["correct"]:
+            print(f"The answer you gave was {item['user']}.")
+        else:
+            print(f"The answer you gave was {item['user']}, but the correct answer is {item['answer']}.")
+        print(f"{result}\n")
+
+print("Thank you for participating in my quiz!")
