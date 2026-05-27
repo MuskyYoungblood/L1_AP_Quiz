@@ -38,14 +38,14 @@ def question_check(answer):
            # If the user got the question correct or incorrect, it adds your feedback to the quiz history
            # History_feedback is what's displayed when user asks for quiz history
            if user == answer:
-               feedback = "You got the answer correct."
-               history_feedback = f"Question {questions_answered} of {num_questions}: {feedback}"
+               feedback = "Congratulations! You got the answer correct!"
+               history_feedback = f"Question {questions_answered} of {num_questions}:\n{feedback}\n"
                quiz_history.append(history_feedback)
                correct_ans.append(1)
                return
            else:
-               feedback = "You got the answer incorrect."
-               history_feedback = f"Question {questions_answered} of {num_questions}: {feedback}"
+               feedback = f"The answer you gave was {user}, but the correct answer is {answer}. \nSorry, you got the answer incorrect."
+               history_feedback = f"Question {questions_answered} of {num_questions}:\n{feedback}\n"
                quiz_history.append(history_feedback)
                return
 
