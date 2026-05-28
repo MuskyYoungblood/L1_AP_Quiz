@@ -151,7 +151,7 @@ if see_history == "yes":
     # Displays user's percentage
     amount_of_correct = len(correct_ans)
     percentage = round((amount_of_correct / num_questions) * 100, 2)
-    print(f"{percentage}% / 100%")
+    print(f"You got a score of {percentage}%")
 
 
 print("\nThank you for participating in my quiz!")
